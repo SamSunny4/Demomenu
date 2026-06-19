@@ -33,7 +33,7 @@ export const menuData: MenuCategory[] = [
         category: "Milk Shake & Ice Cream",
         description: "An indulgent symphony of rich cocoa. Each sip offers a deeply satisfying plunge into a world of decadent, artisanal chocolate goodness.",
         ingredients: ["Artisanal Dark Cocoa", "Full Cream Milk", "Heavy Cream", "Chocolate Shavings"],
-        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1546452656-e41c599187da?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "ms-pista",
@@ -51,7 +51,7 @@ export const menuData: MenuCategory[] = [
         category: "Milk Shake & Ice Cream",
         description: "A vibrant, berry-infused masterpiece that perfectly balances sweet and tart notes, delivering a refreshing burst of dark fruit elegance.",
         ingredients: ["Wild Blackcurrants", "Fresh Cream", "Whole Milk", "Berry Compote"],
-        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "ms-cashew",
@@ -60,7 +60,7 @@ export const menuData: MenuCategory[] = [
         category: "Milk Shake & Ice Cream",
         description: "Luxuriously rich and creamy, this golden shake features the subtle, buttery sweetness of premium, slow-roasted cashews.",
         ingredients: ["Premium Cashew Nuts", "Rich Milk", "Heavy Cream", "Hint of Honey"],
-        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "ms-kashmir",
@@ -69,7 +69,7 @@ export const menuData: MenuCategory[] = [
         category: "Milk Shake & Ice Cream",
         description: "An aromatic journey inspired by the valley of Kashmir. A majestic blend of exotic fruits and delicate spices.",
         ingredients: ["Saffron", "Almonds", "Rose Water", "Rich Cream", "Dried Fruits"],
-        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "ms-mango",
@@ -78,7 +78,7 @@ export const menuData: MenuCategory[] = [
         category: "Milk Shake & Ice Cream",
         description: "The undisputed king of fruits presented in a luscious, golden shake. A tropical escape in every decadent sip.",
         ingredients: ["Alphonso Mango Pulp", "Chilled Milk", "Ice Cream", "Mango Chunks"],
-        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1546892978-68f44de1590f?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "ms-pineapple",
@@ -96,7 +96,7 @@ export const menuData: MenuCategory[] = [
         category: "Milk Shake & Ice Cream",
         description: "A pristine, soul-soothing beverage celebrating the delicate, hydrating purity of young tender coconut meat.",
         ingredients: ["Tender Coconut Meat", "Coconut Water", "Light Cream", "Organic Sugar"],
-        imageUrl: "https://images.unsplash.com/photo-1550461716-ba4eea50b25c?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1623190890250-9f5e1823eb52?w=500&auto=format&fit=crop&q=60"
       }
     ]
   },
@@ -110,7 +110,7 @@ export const menuData: MenuCategory[] = [
         category: "Special Shakes",
         description: "A regal, nutrient-rich elixir steeped in tradition. Laden with crushed almonds and a whisper of saffron for an opulent finish.",
         ingredients: ["California Almonds", "Saffron Threads", "Whole Milk", "Cardamom", "Raw Sugar"],
-        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1615486171448-4fd0a793a8bf?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "ss-cara-milk",
@@ -119,7 +119,7 @@ export const menuData: MenuCategory[] = [
         category: "Special Shakes",
         description: "A caramel lover's dream elevated by the satisfying crunch of assorted premium nuts. A sophisticated balance of sweet and savory.",
         ingredients: ["Caramel Syrup", "Mixed Nuts", "Vanilla Bean Ice Cream", "Whole Milk"],
-        imageUrl: "https://images.unsplash.com/photo-1550461716-ba4eea50b25c?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?w=500&auto=format&fit=crop&q=60"
       }
     ]
   },
@@ -133,7 +133,7 @@ export const menuData: MenuCategory[] = [
         category: "Falooda",
         description: "A majestic dessert beverage layered with textures and flavors. A visual and gastronomic spectacle fit for royalty.",
         ingredients: ["Rose Syrup", "Vermicelli", "Sweet Basil Seeds", "Ice Cream", "Mixed Jelly"],
-        imageUrl: "https://images.unsplash.com/photo-1550461716-ba4eea50b25c?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1582716401301-b2407dc7563d?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "fa-butter",
@@ -142,7 +142,7 @@ export const menuData: MenuCategory[] = [
         category: "Falooda",
         description: "An extraordinarily rich variation of the classic, crowned with butterscotch notes and an exceptionally creamy base.",
         ingredients: ["Butterscotch Syrup", "Vermicelli", "Basil Seeds", "Butter Pecan Ice Cream", "Nuts"],
-        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?w=500&auto=format&fit=crop&q=60"
       }
     ]
   },
@@ -165,7 +165,7 @@ export const menuData: MenuCategory[] = [
         category: "Fresh Lime",
         description: "An uplifting fusion of zesty lime and crushed fresh mint leaves. A cooling breeze in a glass.",
         ingredients: ["Fresh Lime", "Muddled Mint Leaves", "Crushed Ice", "Sugar Syrup"],
-        imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "fl-grapes",
@@ -174,7 +174,7 @@ export const menuData: MenuCategory[] = [
         category: "Fresh Lime",
         description: "A delightful twist on the classic cooler, featuring the sweet, nectarous essence of crushed grapes.",
         ingredients: ["Fresh Lime Juice", "Grape Extract", "Chilled Water", "Ice Cubes"],
-        imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500&auto=format&fit=crop&q=60"
       }
     ]
   },
@@ -202,7 +202,7 @@ export const menuData: MenuCategory[] = [
         category: "Mutton",
         description: "Succulent, frenched mutton chops marinated in a secret blend of heritage spices, seared to a glorious caramelized finish.",
         ingredients: ["Premium Mutton Chops", "Ginger Garlic Paste", "Garam Masala", "Yogurt", "Black Pepper"],
-        imageUrl: "https://images.unsplash.com/photo-1544025162-8111142154ea?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "mt-fry",
@@ -211,7 +211,7 @@ export const menuData: MenuCategory[] = [
         category: "Mutton",
         description: "Tender morsels of mutton slow-roasted in a cast-iron pan until intensely flavorful, dark, and beautifully spiced.",
         ingredients: ["Boneless Mutton", "Roasted Spices", "Curry Leaves", "Shallots", "Coconut Oil"],
-        imageUrl: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=500&auto=format&fit=crop&q=60"
       }
     ]
   },
@@ -234,7 +234,7 @@ export const menuData: MenuCategory[] = [
         category: "Fish & Seafood",
         description: "Spicy, deep-fried fish florets tempered with curry leaves and green chillies. An irresistible and iconic appetizer.",
         ingredients: ["Boneless Fish Cubes", "Spicy 65 Marinade", "Curry Leaves", "Green Chillies", "Rice Flour"],
-        imageUrl: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1627308595229-7830f5c9c66e?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "fs-chilli",
@@ -243,7 +243,7 @@ export const menuData: MenuCategory[] = [
         category: "Fish & Seafood",
         description: "An Indo-Chinese fusion delight. Crispy fish tossed in a glossy, savory, and perfectly spiced soy-garlic glaze.",
         ingredients: ["Fish Fillets", "Bell Peppers", "Soy Sauce", "Garlic", "Spring Onions"],
-        imageUrl: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1534960570534-11003444ab31?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "fs-prawns",
@@ -275,7 +275,7 @@ export const menuData: MenuCategory[] = [
         category: "Dinner",
         description: "An ultra-thin, elegantly folded variation of the classic parotta, offering a delightfully soft and delicate texture.",
         ingredients: ["Refined Flour", "Oil", "Salt", "Egg Wash (Optional)"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "dn-kothu",
@@ -293,7 +293,7 @@ export const menuData: MenuCategory[] = [
         category: "Dinner",
         description: "A spectacular stuffed creation. Parotta enveloping a lavish, spicy chicken filling, cooked to a crisp golden brown.",
         ingredients: ["Parotta Dough", "Minced Chicken Spiced Filling", "Onions", "Coriander", "Ghee"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "dn-oil",
@@ -311,7 +311,7 @@ export const menuData: MenuCategory[] = [
         category: "Dinner",
         description: "Incredibly soft, cloud-like parottas that live up to their name. They melt effortlessly in the mouth.",
         ingredients: ["Special Milled Flour", "Milk", "Butter", "Salt"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "dn-banana",
@@ -320,7 +320,7 @@ export const menuData: MenuCategory[] = [
         category: "Dinner",
         description: "A fragrant masterpiece. Parotta and rich chicken gravy wrapped in a banana leaf and steamed to infuse earthy aromas.",
         ingredients: ["Parotta", "Chicken Sukka Gravy", "Banana Leaf Wrapper", "Aromatic Spices"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1589301760014-d929f39ce9b0?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "dn-chapathi",
@@ -347,7 +347,7 @@ export const menuData: MenuCategory[] = [
         category: "Dinner",
         description: "Lace-edged, bowl-shaped rice pancakes served alongside a fragrant, coconut-milk infused chicken stew.",
         ingredients: ["Fermented Rice & Coconut Batter", "Chicken", "Coconut Milk", "Mild Spices"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60"
       }
     ]
   },
@@ -379,7 +379,7 @@ export const menuData: MenuCategory[] = [
         category: "Chinese",
         description: "Earthy, premium mushrooms wok-tossed in a vibrant, slightly sweet and sharply spicy Manchurian sauce.",
         ingredients: ["Button Mushrooms", "Capsicum", "Onions", "Manchurian Sauce", "Coriander"],
-        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1625398407796-a29b207553b3?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "ch-crispy",
@@ -406,7 +406,7 @@ export const menuData: MenuCategory[] = [
         category: "Chinese",
         description: "A visually striking, intensely spicy dish featuring crispy chicken strips tossed with roasted cashews and fiery red chillies.",
         ingredients: ["Chicken Strips", "Dry Red Chillies", "Cashew Nuts", "Spicy Red Sauce", "Spring Onions"],
-        imageUrl: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1625398407796-a29b207553b3?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "ch-shawarma",
@@ -438,7 +438,7 @@ export const menuData: MenuCategory[] = [
         category: "Fried Rice",
         description: "Fluffy rice intensely wok-charred with tender chicken morsels, egg ribbons, and a savory seasoning blend.",
         ingredients: ["Rice", "Shredded Chicken", "Eggs", "White Pepper", "Soy Sauce"],
-        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "fr-panner",
@@ -456,7 +456,7 @@ export const menuData: MenuCategory[] = [
         category: "Fried Rice",
         description: "A fiery, bold preparation elevated by our house-made Schezwan sauce, delivering a complex, spicy kick.",
         ingredients: ["Rice", "Chicken", "Schezwan Peppercorns", "Garlic", "Spicy Red Sauce"],
-        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "fr-taiwanese",
@@ -488,7 +488,7 @@ export const menuData: MenuCategory[] = [
         category: "Noodles",
         description: "A comforting classic. Silky noodles intertwined with perfectly scrambled eggs and a dash of white pepper.",
         ingredients: ["Noodles", "Fresh Eggs", "Spring Onions", "White Pepper", "Light Soy"],
-        imageUrl: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1582878826629-29b7ad1cb431?w=500&auto=format&fit=crop&q=60"
       },
       {
         id: "nd-schezwan",
@@ -506,7 +506,7 @@ export const menuData: MenuCategory[] = [
         category: "Noodles",
         description: "A refined, aromatic stir-fry of noodles and crisp Asian greens, showcasing delicate Taiwanese flavors.",
         ingredients: ["Noodles", "Asian Greens", "Mushrooms", "Sesame Oil", "Mild Soy"],
-        imageUrl: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1582878826629-29b7ad1cb431?w=500&auto=format&fit=crop&q=60"
       }
     ]
   }
