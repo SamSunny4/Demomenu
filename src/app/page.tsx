@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import CategoryNav from '../components/CategoryNav';
 import MenuCategory from '../components/MenuCategory';
 import ItemDetailsModal from '../components/ItemDetailsModal';
 import { menuData, MenuItem } from '../data/menu';
@@ -21,6 +22,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Header />
+      <CategoryNav />
       
       <main className={styles.main}>
         {menuData.map((category) => (
