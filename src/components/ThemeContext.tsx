@@ -162,7 +162,74 @@ export const THEMES: Theme[] = [
       borderSubtle: 'rgba(54,34,20,0.06)',
     },
   },
+  {
+    id: 'electric-indigo',
+    name: 'Electric Indigo',
+    emoji: '⚡',
+    description: 'Vibrant electro-luxe',
+    fonts: { heading: 'syne', body: 'inter', label: 'Syne + Inter' },
+    colors: {
+      bgColor: '#0C081A',
+      bgColorRgb: '12, 8, 26',
+      surfaceColor: '#150F2B',
+      surfaceHover: '#1D143D',
+      surfaceElevated: '#1D143D',
+      textPrimary: '#FFFFFF',
+      textSecondary: '#B4AEC6',
+      textMuted: '#756C8C',
+      accentColor: '#D3FF52',
+      accentLight: '#E6FF9E',
+      accentDark: '#AACC1D',
+      borderColor: '#231C3D',
+      borderSubtle: 'rgba(255,255,255,0.05)',
+    },
+  },
+  {
+    id: 'crimson-velvet',
+    name: 'Crimson Velvet',
+    emoji: '🍷',
+    description: 'High-fashion luxury',
+    fonts: { heading: 'cinzel', body: 'inter', label: 'Cinzel + Inter' },
+    colors: {
+      bgColor: '#FDFBFA',
+      bgColorRgb: '253, 251, 250',
+      surfaceColor: '#F5EFEB',
+      surfaceHover: '#EBE0DA',
+      surfaceElevated: '#FFFFFF',
+      textPrimary: '#1E0A0A',
+      textSecondary: '#543D3D',
+      textMuted: '#8C7272',
+      accentColor: '#A62B2B',
+      accentLight: '#C84E4E',
+      accentDark: '#7D1B1B',
+      borderColor: '#E5D5CD',
+      borderSubtle: 'rgba(30,10,10,0.05)',
+    },
+  },
+  {
+    id: 'retro-tangerine',
+    name: 'Retro Tangerine',
+    emoji: '🍊',
+    description: 'Bold Bauhaus groove',
+    fonts: { heading: 'space', body: 'inter', label: 'Space + Inter' },
+    colors: {
+      bgColor: '#1F140E',
+      bgColorRgb: '31, 20, 14',
+      surfaceColor: '#2B1D16',
+      surfaceHover: '#38271E',
+      surfaceElevated: '#2B1D16',
+      textPrimary: '#FFEFEB',
+      textSecondary: '#D4BFA8',
+      textMuted: '#9E8672',
+      accentColor: '#FF6B35',
+      accentLight: '#FFA482',
+      accentDark: '#CC4918',
+      borderColor: '#38271E',
+      borderSubtle: 'rgba(255,239,235,0.05)',
+    },
+  },
 ];
+
 
 interface ThemeContextValue {
   theme: Theme;
@@ -198,6 +265,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const fontMap: Record<string, string> = {
       cormorant: 'var(--font-cormorant), var(--font-playfair), serif',
       playfair: 'var(--font-playfair), var(--font-cormorant), serif',
+      syne: 'var(--font-syne), var(--font-inter), sans-serif',
+      cinzel: 'var(--font-cinzel), serif',
+      space: 'var(--font-space), var(--font-inter), sans-serif',
     };
     root.style.setProperty('--font-heading', fontMap[t.fonts.heading] || fontMap.cormorant);
 

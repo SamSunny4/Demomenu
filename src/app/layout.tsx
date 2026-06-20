@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Cormorant_Garamond, Great_Vibes } from "next/font/google";
+import { Playfair_Display, Inter, Cormorant_Garamond, Great_Vibes, Syne, Cinzel, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Providers from "./Providers";
 
@@ -25,6 +25,24 @@ const greatVibes = Great_Vibes({
   weight: ["400"],
 });
 
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+});
+
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "The Grand Menu",
   description: "Premium restaurant menu",
@@ -44,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${cormorant.variable} ${greatVibes.variable}`}
+      className={`${playfair.variable} ${inter.variable} ${cormorant.variable} ${greatVibes.variable} ${syne.variable} ${cinzel.variable} ${spaceGrotesk.variable}`}
     >
       <body>
         <Providers>{children}</Providers>
