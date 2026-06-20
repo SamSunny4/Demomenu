@@ -23,6 +23,9 @@
 
   --header-height: 72px;
   --nav-height: 40px;
+
+  /* Theme transition speed */
+  --theme-transition: 350ms ease;
 }
 
 /* ── Reset ── */
@@ -45,6 +48,10 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   overflow-x: hidden;
+  /* Smooth theme color transitions */
+  transition:
+    background-color var(--theme-transition),
+    color var(--theme-transition);
 }
 
 h1, h2, h3, h4, h5, h6 {

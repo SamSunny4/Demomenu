@@ -105,6 +105,13 @@
   background: var(--border-color);
 }
 
+.themeSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0.25rem 0;
+}
+
 .copyright {
   font-size: 0.7rem;
   color: var(--text-secondary);

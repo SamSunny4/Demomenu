@@ -1,0 +1,178 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* ── Trigger button ── */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-color);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.trigger:hover,
+.trigger:active {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: var(--surface-hover);
+}
+
+/* ── Floating panel ── */
+.panel {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92vw, 420px);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow:
+    0 -4px 40px rgba(0,0,0,0.12),
+    0 2px 12px rgba(0,0,0,0.06);
+  z-index: 1000;
+}
+
+.panelLabel {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* ── Theme grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+/* ── Individual theme card ── */
+.themeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 14px;
+  border: 1.5px solid var(--border-color);
+  background: var(--surface-color);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.themeCard:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.themeCard.active {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* ── Color swatch preview ── */
+.swatch {
+  position: relative;
+  width: 52px;
+  height: 34px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+.swatchBg {
+  position: absolute;
+  inset: 0;
+}
+
+.swatchSurface {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 18px;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+.swatchAccent {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.swatchCheck {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* ── Card meta text ── */
+.cardMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  text-align: center;
+}
+
+.cardEmoji {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.cardName {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.cardFont {
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  color: var(--accent-color);
+  font-style: italic;
+  letter-spacing: 0.01em;
+}

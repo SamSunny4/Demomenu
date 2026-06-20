@@ -3,6 +3,7 @@
 import React from 'react';
 import { UtensilsCrossed, Phone, MapPin, Clock, Globe, Heart } from 'lucide-react';
 import styles from './Footer.module.css';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Footer() {
   return (
@@ -48,6 +49,11 @@ export default function Footer() {
         </div>
 
         <div className={styles.divider} />
+
+        {/* ── Theme Selector ── */}
+        <div className={styles.themeSection}>
+          <ThemeSwitcher />
+        </div>
 
         <p className={styles.copyright}>
           © 2024 The Grand Menu. All rights reserved.

@@ -1,14 +1,13 @@
 .navContainer {
   position: sticky;
-  /* top is driven by framer-motion spring — see CategoryNav.tsx */
+  top: var(--header-height, 72px);
   z-index: 40;
-  background: rgba(248, 244, 236, 0.95);
+  background: var(--header-bg, rgba(248, 244, 236, 0.95));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-subtle);
   width: 100%;
   height: 44px;
-  will-change: top;
 }
 
 .scrollWrapper {
@@ -37,12 +36,12 @@
 
 .fadeLeft {
   left: 0;
-  background: linear-gradient(to right, rgba(248, 244, 236, 1), transparent);
+  background: linear-gradient(to right, var(--bg-color), transparent);
 }
 
 .fadeRight {
   right: 0;
-  background: linear-gradient(to left, rgba(248, 244, 236, 1), transparent);
+  background: linear-gradient(to left, var(--bg-color), transparent);
 }
 
 .categoryButton {
@@ -72,5 +71,5 @@
   color: #fff;
   border-color: var(--accent-color);
   font-weight: 600;
-  box-shadow: 0 2px 12px rgba(182, 141, 64, 0.25);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }

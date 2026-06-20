@@ -2,13 +2,16 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  /* background and height driven by framer-motion inline styles */
-  background: rgba(248, 244, 236, 0.95);
+  /* Fixed height — no layout reflow from JS */
+  height: 72px;
+  background: var(--header-bg, rgba(248, 244, 236, 0.95));
   backdrop-filter: blur(14px) saturate(1.3);
   -webkit-backdrop-filter: blur(14px) saturate(1.3);
   border-bottom: 1px solid rgba(17, 17, 17, 0.06);
-  will-change: height;
   overflow: hidden;
+  /* GPU layer — composites shadow/backdrop without layout work */
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .inner {
@@ -19,6 +22,8 @@
   justify-content: center;
   padding: 0 1rem;
   position: relative;
+  /* will-change for the translateY spring */
+  will-change: transform;
 }
 
 .titleContainer {
@@ -28,13 +33,25 @@
   justify-content: center;
 }
 
+/* Clip container prevents the scaling title from overflowing */
+.titleClip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Give the title a stable space so scale doesn't reflow siblings */
+  height: 2rem;
+  overflow: visible;
+}
+
 .title {
   font-family: var(--font-heading);
   font-weight: 600;
+  font-size: 1.75rem;
   color: var(--text-primary);
   line-height: 1.1;
-  /* font-size and letter-spacing driven by framer-motion inline styles */
-  will-change: font-size, letter-spacing;
+  /* Scale transform driven by framer-motion — no font-size changes */
+  will-change: transform;
+  white-space: nowrap;
 }
 
 .titleAccent {
@@ -47,9 +64,10 @@
   font-size: 0.9rem;
   color: var(--accent-color);
   margin: 0;
-  /* opacity and height driven by framer-motion inline styles */
-  will-change: opacity, height;
+  will-change: transform, opacity;
   white-space: nowrap;
+  /* Prevent layout shift as it fades */
+  transform-origin: center top;
 }
 
 .subtitle {
@@ -71,7 +89,7 @@
   height: 1.5px;
   background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
   transform-origin: center;
-  /* scaleX and opacity driven by framer-motion inline styles */
+  will-change: transform, opacity;
 }
 
 .searchButton {

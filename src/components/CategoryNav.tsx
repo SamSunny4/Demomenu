@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import styles from './CategoryNav.module.css';
 import { MenuItem } from '../data/menu';
 
@@ -21,11 +20,6 @@ export default function CategoryNav({ activeCategory, onCategoryClick, categorie
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(true);
-
-  // Mirror the same scroll thresholds as the Header (72px → 50px over 0–80px scroll)
-  const { scrollY } = useScroll();
-  const rawTop = useTransform(scrollY, [0, 80], [72, 50]);
-  const top = useSpring(rawTop, { stiffness: 220, damping: 32, mass: 0.8 });
 
   const handleScrollState = () => {
     const el = scrollRef.current;
@@ -55,7 +49,7 @@ export default function CategoryNav({ activeCategory, onCategoryClick, categorie
   }, [activeCategory]);
 
   return (
-    <motion.nav className={styles.navContainer} style={{ top }}>
+    <nav className={styles.navContainer}>
       {showLeftFade && <div className={styles.fadeLeft} />}
       {showRightFade && <div className={styles.fadeRight} />}
       <div className={styles.scrollWrapper} ref={scrollRef}>
@@ -72,6 +66,6 @@ export default function CategoryNav({ activeCategory, onCategoryClick, categorie
           </button>
         ))}
       </div>
-    </motion.nav>
+    </nav>
   );
 }
