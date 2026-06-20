@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Search, X } from 'lucide-react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence, useMotionValueEvent } from 'framer-motion';
 import styles from './Header.module.css';
 
 interface Props {
@@ -13,6 +13,15 @@ interface Props {
 
 export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props) {
   const { scrollY } = useScroll();
+  const [scrolled, setScrolled] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const isScrolled = latest > 50;
+    if (isScrolled !== scrolled) {
+      setScrolled(isScrolled);
+      document.documentElement.style.setProperty('--header-height', isScrolled ? '60px' : '72px');
+    }
+  });
 
   // Scroll thresholds
   const SCROLL_END = 80;
@@ -29,8 +38,8 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
    */
 
   // Raw scroll-driven values (no spring here — spring applied once below)
-  const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [0, -11]);   // px upward slide
-  const rawTitleScale = useTransform(scrollY, [0, SCROLL_END], [1, 0.68]);  // title shrink
+  const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [0, -6]);    // px upward slide
+  const rawTitleScale = useTransform(scrollY, [0, SCROLL_END], [1, 0.82]);  // title shrink (0.82 keeps it legible and not too small)
   const rawSubOpacity = useTransform(scrollY, [0, 40],         [1, 0]);
   const rawSubScale   = useTransform(scrollY, [0, 40],         [1, 0.85]);
   const rawLineScale  = useTransform(scrollY, [0, 40],         [1, 0]);
@@ -54,7 +63,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
   return (
     <motion.header
       id="main-header"
-      className={styles.header}
+      className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}
       style={{ boxShadow, borderBottomColor: borderColor }}
     >
       {/* Inner slides upward via translateY — no height reflow */}

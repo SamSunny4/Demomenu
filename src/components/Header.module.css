@@ -10,8 +10,13 @@
   border-bottom: 1px solid rgba(17, 17, 17, 0.06);
   overflow: hidden;
   /* GPU layer — composites shadow/backdrop without layout work */
-  will-change: transform;
+  will-change: transform, height;
+  transition: height 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   contain: layout style paint;
+}
+
+.headerScrolled {
+  height: 60px;
 }
 
 .inner {
