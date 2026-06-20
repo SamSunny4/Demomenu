@@ -1,84 +1,146 @@
 .card {
   display: flex;
-  background-color: var(--surface-color);
-  border-radius: 12px;
+  flex-direction: row; /* Horizontal layout */
+  background-color: var(--surface-elevated); /* Cream-white surface */
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: 1px solid rgba(253, 251, 247, 0.03);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(17, 17, 17, 0.04); /* Hairline border */
+  box-shadow: 0 4px 16px rgba(17, 17, 17, 0.02); /* Softer, luxurious shadow */
+  -webkit-tap-highlight-color: transparent;
+  padding: 8px; /* 8px grid */
+  gap: 12px; /* 8px grid */
+  align-items: stretch; /* stretch to allow signature at bottom */
 }
 
 .card:hover {
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.04);
+  transform: translateY(-2px);
+}
+
+.card:active {
   background-color: var(--surface-hover);
+  transform: scale(0.985) translateY(0);
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.02);
 }
 
 .imageContainer {
-  width: 100px;
-  min-width: 100px;
-  height: 100px;
+  width: 110px; /* Reduced slightly */
+  height: 110px;
+  flex-shrink: 0;
+  border-radius: 12px; /* Slightly smaller than card to look nested */
   overflow: hidden;
+  position: relative;
+  background-color: var(--surface-color); /* Skeleton placeholder */
+}
+
+/* Elegant skeleton animation for placeholder */
+.imageContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite;
+  z-index: 0;
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: relative;
+  z-index: 1; /* Above skeleton */
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card:hover .image {
+  transform: scale(1.06);
+}
+
+/* Removed badgeTopLeft since badges are now in content */
+
+.badgeBottomRight {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Contrast against image */
+  background-color: var(--surface-elevated);
+  border: none;
 }
 
 .content {
-  flex: 1;
-  padding: 0.75rem 1rem;
   display: flex;
   flex-direction: column;
-  position: relative;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  padding: 4px 0;
 }
 
-.header {
+.badgesContainer {
   display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.headerGroup {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 0.25rem;
+  gap: 8px;
+  margin-bottom: 2px;
 }
 
 .title {
   font-size: 1.1rem;
   font-family: var(--font-heading);
   color: var(--text-primary);
-  margin-right: 0.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .price {
-  font-weight: 600;
-  color: var(--accent-color);
-  font-size: 1rem;
+  font-weight: 800; /* Increased weight */
+  color: var(--accent-dark); /* Darker gold for contrast */
+  font-size: 1.15rem; /* Slightly larger */
+  font-family: var(--font-heading);
+  flex-shrink: 0;
+  margin-top: -2px; /* optical alignment */
 }
 
 .description {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  font-size: 0.75rem;
+  color: var(--text-muted);
   line-height: 1.4;
-  margin-top: 0.25rem;
-  padding-right: 1.5rem; /* Room for the button */
+  /* 1 line clamp */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
 }
 
-.addButton {
-  position: absolute;
-  bottom: 0.75rem;
-  right: 1rem;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  color: var(--bg-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.9;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+.signatureElement {
+  margin-top: auto;
+  text-align: right;
+  padding-right: 4px;
 }
 
-.card:hover .addButton {
-  opacity: 1;
-  transform: scale(1.1);
+.signatureMotif {
+  font-family: var(--font-heading);
+  color: var(--accent-color);
+  font-size: 0.8rem;
+  opacity: 0.5;
 }

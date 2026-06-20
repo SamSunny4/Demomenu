@@ -1,22 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --bg-color: #0d0c0c; /* Deep rich black */
-  --surface-color: #1a1918; /* Slightly lighter for cards */
-  --surface-hover: #262524;
-  --text-primary: #fdfbf7; /* Cream */
-  --text-secondary: #dcd3c6; /* Darker cream/gold tint */
-  --accent-color: #d4af37; /* Gold accent */
-  --border-color: #33302c;
-  
-  --font-heading: var(--font-playfair), serif;
+  --bg-color: #F8F4EC;
+  --bg-color-rgb: 248, 244, 236;
+  --surface-color: #F4EFE6;
+  --surface-hover: #EFE7DA;
+  --surface-elevated: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: #222222;
+  --text-muted: #666666;
+  --accent-color: #B68D40;
+  --accent-light: #CBA55D;
+  --accent-dark: #A97C50;
+  --border-color: #E2D9C8;
+  --border-subtle: rgba(17, 17, 17, 0.06);
+  --success-color: #2d8a4e;
+  --danger-color: #c0392b;
+
+  --font-heading: var(--font-cormorant), var(--font-playfair), serif;
   --font-body: var(--font-inter), sans-serif;
+  --font-accent: var(--font-cursive), cursive;
+
+  --header-height: 60px;
+  --nav-height: 40px;
 }
 
-* {
+/* ── Reset ── */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html, body {
@@ -50,24 +67,33 @@ button {
   color: inherit;
 }
 
-/* Scrollbar styling for premium feel */
+ul, ol {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-color);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--border-color);
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
-/* Micro-animations and utility classes */
+/* ── Utility Classes ── */
 .glass-effect {
-  background: rgba(26, 25, 24, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(253, 251, 247, 0.05);
+  background: rgba(248, 244, 236, 0.85); /* Ivory glass */
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .line-clamp-2 {
@@ -75,4 +101,96 @@ button {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* ── Badge System ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: var(--font-body);
+  line-height: 1;
+}
+
+.badge-popular {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+  color: #fff;
+}
+
+.badge-chef {
+  background: linear-gradient(135deg, #A97C50, #8A6541); /* Bronze for chef */
+  color: #fff;
+}
+
+.badge-tag {
+  background: var(--surface-color);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.badge-veg {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--success-color);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge-veg::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success-color);
+}
+
+.badge-nonveg {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--danger-color);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge-nonveg::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid var(--danger-color);
+}
+
+/* ── Shimmer loading effect ── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg,
+    var(--surface-color) 25%,
+    var(--surface-hover) 50%,
+    var(--surface-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+
+/* ── Subtle shadow keyframes ── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 4px 12px rgba(17, 17, 17, 0.05); }
+  50% { box-shadow: 0 4px 20px rgba(17, 17, 17, 0.08); }
 }

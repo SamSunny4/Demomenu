@@ -1,0 +1,114 @@
+.footer {
+  position: relative;
+  background: var(--surface-color);
+  padding: 2.5rem 1.25rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brandIcon {
+  color: var(--accent-color);
+}
+
+.brandName {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+}
+
+.powered {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+  margin-top: -1rem;
+}
+
+.infoGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.infoIcon {
+  color: var(--accent-color);
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Touch-friendly social icons — bigger tap targets, no hover */
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.socialLink:active {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.divider {
+  width: 60%;
+  max-width: 200px;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.copyright {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  opacity: 0.45;
+  letter-spacing: 0.04em;
+  text-align: center;
+}

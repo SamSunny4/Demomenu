@@ -6,507 +6,595 @@ export interface MenuItem {
   description: string;
   ingredients: string[];
   imageUrl: string;
+  isVeg: boolean;
+  isPopular?: boolean;
+  isChefSpecial?: boolean;
+  tag?: string;
 }
 
 export interface MenuCategory {
   title: string;
+  icon: string;
   items: MenuItem[];
 }
 
 export const menuData: MenuCategory[] = [
   {
     title: "Milk Shake & Ice Cream",
+    icon: "",
     items: [
       {
         id: "ms-vennila",
-        name: "Vennila",
+        name: "Vanilla Bean Shake",
         price: 75,
         category: "Milk Shake & Ice Cream",
-        description: "A timeless classic that embodies elegant simplicity. Hand-spun with premium vanilla bean extract to create a velvety smooth texture that lingers gracefully on the palate.",
+        description: "Madagascar vanilla beans blended with fresh cream.",
         ingredients: ["Madagascar Vanilla Beans", "Full Cream Milk", "Fresh Cream", "Cane Sugar"],
-        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ms-chocolate",
-        name: "Chocolate",
+        name: "Dark Chocolate Shake",
         price: 80,
         category: "Milk Shake & Ice Cream",
-        description: "An indulgent symphony of rich cocoa. Each sip offers a deeply satisfying plunge into a world of decadent, artisanal chocolate goodness.",
+        description: "Artisanal dark cocoa blended with heavy cream.",
         ingredients: ["Artisanal Dark Cocoa", "Full Cream Milk", "Heavy Cream", "Chocolate Shavings"],
-        imageUrl: "https://images.unsplash.com/photo-1546452656-e41c599187da?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1511018556340-d16986a1c194?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        isPopular: true
       },
       {
         id: "ms-pista",
-        name: "Pista",
+        name: "Roasted Pistachio Shake",
         price: 80,
         category: "Milk Shake & Ice Cream",
-        description: "A royal treat brimming with the earthy, nutty essence of roasted pistachios. Blended to a stunning pastel green perfection.",
+        description: "Roasted pistachios blended with cardamom and whole milk.",
         ingredients: ["Roasted Pistachios", "Whole Milk", "Sweetened Condensed Milk", "Cardamom Hint"],
-        imageUrl: "https://images.unsplash.com/photo-1550461716-ba4eea50b25c?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ms-black-current",
-        name: "Black Current",
+        name: "Blackcurrant Shake",
         price: 80,
         category: "Milk Shake & Ice Cream",
-        description: "A vibrant, berry-infused masterpiece that perfectly balances sweet and tart notes, delivering a refreshing burst of dark fruit elegance.",
+        description: "Wild blackcurrants blended with fresh cream.",
         ingredients: ["Wild Blackcurrants", "Fresh Cream", "Whole Milk", "Berry Compote"],
-        imageUrl: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ms-cashew",
-        name: "Cashew",
+        name: "Butter Cashew Shake",
         price: 90,
         category: "Milk Shake & Ice Cream",
-        description: "Luxuriously rich and creamy, this golden shake features the subtle, buttery sweetness of premium, slow-roasted cashews.",
+        description: "Slow-roasted cashews with milk and honey.",
         ingredients: ["Premium Cashew Nuts", "Rich Milk", "Heavy Cream", "Hint of Honey"],
-        imageUrl: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ms-kashmir",
-        name: "Kashmir",
+        name: "Kashmiri Saffron Shake",
         price: 85,
         category: "Milk Shake & Ice Cream",
-        description: "An aromatic journey inspired by the valley of Kashmir. A majestic blend of exotic fruits and delicate spices.",
+        description: "Saffron infused shake with almonds and rose water.",
         ingredients: ["Saffron", "Almonds", "Rose Water", "Rich Cream", "Dried Fruits"],
-        imageUrl: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        isChefSpecial: true
       },
       {
         id: "ms-mango",
-        name: "Mango Shake",
+        name: "Alphonso Mango Shake",
         price: 80,
         category: "Milk Shake & Ice Cream",
-        description: "The undisputed king of fruits presented in a luscious, golden shake. A tropical escape in every decadent sip.",
+        description: "Alphonso mango pulp blended with chilled milk.",
         ingredients: ["Alphonso Mango Pulp", "Chilled Milk", "Ice Cream", "Mango Chunks"],
-        imageUrl: "https://images.unsplash.com/photo-1546892978-68f44de1590f?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        isPopular: true,
+        tag: "Seasonal"
       },
       {
         id: "ms-pineapple",
-        name: "Pineapple",
+        name: "Fresh Pineapple Shake",
         price: 90,
         category: "Milk Shake & Ice Cream",
-        description: "A zesty and revitalizing creation that captures the bright, sun-kissed essence of freshly harvested pineapples.",
+        description: "Fresh pineapple blended with vanilla ice cream.",
         ingredients: ["Fresh Pineapple", "Vanilla Ice Cream", "Milk", "Tropical Syrup"],
-        imageUrl: "https://images.unsplash.com/photo-1550461716-ba4eea50b25c?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ms-coconut",
-        name: "Tender Coconut",
+        name: "Tender Coconut Shake",
         price: 80,
         category: "Milk Shake & Ice Cream",
-        description: "A pristine, soul-soothing beverage celebrating the delicate, hydrating purity of young tender coconut meat.",
+        description: "Tender coconut meat blended with fresh coconut water.",
         ingredients: ["Tender Coconut Meat", "Coconut Water", "Light Cream", "Organic Sugar"],
-        imageUrl: "https://images.unsplash.com/photo-1623190890250-9f5e1823eb52?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       }
     ]
   },
   {
     title: "Special Shakes",
+    icon: "",
     items: [
       {
         id: "ss-badam",
-        name: "Badam Shake",
+        name: "Saffron Badam Milk",
         price: 100,
         category: "Special Shakes",
-        description: "A regal, nutrient-rich elixir steeped in tradition. Laden with crushed almonds and a whisper of saffron for an opulent finish.",
+        description: "Chilled milk infused with crushed almonds and saffron.",
         ingredients: ["California Almonds", "Saffron Threads", "Whole Milk", "Cardamom", "Raw Sugar"],
-        imageUrl: "https://images.unsplash.com/photo-1615486171448-4fd0a793a8bf?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        isPopular: true
       },
       {
         id: "ss-cara-milk",
-        name: "Cara Milk Nuts",
+        name: "Caramel Nut Shake",
         price: 80,
         category: "Special Shakes",
-        description: "A caramel lover's dream elevated by the satisfying crunch of assorted premium nuts. A sophisticated balance of sweet and savory.",
+        description: "Vanilla ice cream layered with caramel and mixed nuts.",
         ingredients: ["Caramel Syrup", "Mixed Nuts", "Vanilla Bean Ice Cream", "Whole Milk"],
-        imageUrl: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        tag: "New"
       }
     ]
   },
   {
     title: "Falooda",
+    icon: "",
     items: [
       {
         id: "fa-royal",
-        name: "Royal Falooda",
+        name: "Royal Rose Falooda",
         price: 150,
         category: "Falooda",
-        description: "A majestic dessert beverage layered with textures and flavors. A visual and gastronomic spectacle fit for royalty.",
+        description: "Rose syrup layered with vermicelli, basil seeds, and ice cream.",
         ingredients: ["Rose Syrup", "Vermicelli", "Sweet Basil Seeds", "Ice Cream", "Mixed Jelly"],
-        imageUrl: "https://images.unsplash.com/photo-1582716401301-b2407dc7563d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1582716401301-b2407dc7563d?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        isPopular: true
       },
       {
         id: "fa-butter",
-        name: "Butter Falooda",
+        name: "Butterscotch Falooda",
         price: 170,
         category: "Falooda",
-        description: "An extraordinarily rich variation of the classic, crowned with butterscotch notes and an exceptionally creamy base.",
+        description: "Butterscotch syrup layered with vermicelli and pecan ice cream.",
         ingredients: ["Butterscotch Syrup", "Vermicelli", "Basil Seeds", "Butter Pecan Ice Cream", "Nuts"],
-        imageUrl: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        isChefSpecial: true
       }
     ]
   },
   {
     title: "Fresh Lime",
+    icon: "",
     items: [
       {
         id: "fl-fresh",
-        name: "Fresh Lime",
+        name: "Classic Fresh Lime",
         price: 20,
         category: "Fresh Lime",
-        description: "A crisp, invigorating thirst-quencher made from freshly squeezed limes. The ultimate palate cleanser.",
+        description: "Freshly squeezed limes served sweet or salted.",
         ingredients: ["Fresh Lime Juice", "Chilled Water", "Mint Garnish", "Simple Syrup/Salt"],
-        imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "fl-mint",
-        name: "Mint Lime",
+        name: "Muddled Mint Lime",
         price: 35,
         category: "Fresh Lime",
-        description: "An uplifting fusion of zesty lime and crushed fresh mint leaves. A cooling breeze in a glass.",
+        description: "Fresh lime juice muddled with mint leaves.",
         ingredients: ["Fresh Lime", "Muddled Mint Leaves", "Crushed Ice", "Sugar Syrup"],
-        imageUrl: "https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "fl-grapes",
-        name: "Grapes Lime",
+        name: "Grape Lime Cooler",
         price: 30,
         category: "Fresh Lime",
-        description: "A delightful twist on the classic cooler, featuring the sweet, nectarous essence of crushed grapes.",
+        description: "Fresh lime juice blended with crushed grape extract.",
         ingredients: ["Fresh Lime Juice", "Grape Extract", "Chilled Water", "Ice Cubes"],
-        imageUrl: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       }
     ]
   },
   {
     title: "Fruits Salad",
+    icon: "",
     items: [
       {
         id: "fs-pudding",
-        name: "Fruits Salad Pudding",
+        name: "Fresh Fruit Custard",
         price: 100,
         category: "Fruits Salad",
-        description: "A vibrant mosaic of seasonal fresh fruits gently folded into a silky, luscious pudding. A celebration of nature's candy.",
+        description: "Seasonal cut fruits folded into silky vanilla custard.",
         ingredients: ["Seasonal Mixed Fruits", "Vanilla Custard", "Fresh Cream", "Honey Drizzle"],
-        imageUrl: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       }
     ]
   },
   {
     title: "Mutton",
+    icon: "",
     items: [
       {
         id: "mt-chops",
-        name: "Mutton Chops",
+        name: "Pan-Seared Mutton Chops",
         price: 190,
         category: "Mutton",
-        description: "Succulent, frenched mutton chops marinated in a secret blend of heritage spices, seared to a glorious caramelized finish.",
+        description: "Pan-seared mutton chops marinated in heritage spices.",
         ingredients: ["Premium Mutton Chops", "Ginger Garlic Paste", "Garam Masala", "Yogurt", "Black Pepper"],
-        imageUrl: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isChefSpecial: true
       },
       {
         id: "mt-fry",
-        name: "Mutton Fry",
+        name: "Pepper Mutton Fry",
         price: 120,
         category: "Mutton",
-        description: "Tender morsels of mutton slow-roasted in a cast-iron pan until intensely flavorful, dark, and beautifully spiced.",
+        description: "Boneless mutton slow-roasted with curry leaves and pepper.",
         ingredients: ["Boneless Mutton", "Roasted Spices", "Curry Leaves", "Shallots", "Coconut Oil"],
-        imageUrl: "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=500&auto=format&fit=crop&q=60",
+        isVeg: false
       }
     ]
   },
   {
     title: "Fish & Seafood",
+    icon: "",
     items: [
       {
         id: "fs-fry",
-        name: "Fish Fry",
+        name: "Semolina Fish Fry",
         price: 100,
         category: "Fish & Seafood",
-        description: "Catch of the day enveloped in a fiery, aromatic spice rub and shallow-fried to a crisp, golden perfection.",
+        description: "Shallow-fried fish coated in semolina and spices.",
         ingredients: ["Fresh Fish Slices", "Turmeric", "Red Chilli Paste", "Lemon Juice", "Semolina Crust"],
-        imageUrl: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=500&auto=format&fit=crop&q=60",
+        isVeg: false
       },
       {
         id: "fs-65",
-        name: "Fish 65",
+        name: "Spicy Fish 65",
         price: 100,
         category: "Fish & Seafood",
-        description: "Spicy, deep-fried fish florets tempered with curry leaves and green chillies. An irresistible and iconic appetizer.",
+        description: "Deep-fried fish florets tempered with curry leaves.",
         ingredients: ["Boneless Fish Cubes", "Spicy 65 Marinade", "Curry Leaves", "Green Chillies", "Rice Flour"],
-        imageUrl: "https://images.unsplash.com/photo-1627308595229-7830f5c9c66e?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&auto=format&fit=crop&q=60",
+        isVeg: false
       },
       {
         id: "fs-chilli",
-        name: "Chilli Fish",
+        name: "Chilli Garlic Fish",
         price: 130,
         category: "Fish & Seafood",
-        description: "An Indo-Chinese fusion delight. Crispy fish tossed in a glossy, savory, and perfectly spiced soy-garlic glaze.",
+        description: "Crispy fish fillets tossed in a soy-garlic glaze.",
         ingredients: ["Fish Fillets", "Bell Peppers", "Soy Sauce", "Garlic", "Spring Onions"],
-        imageUrl: "https://images.unsplash.com/photo-1534960570534-11003444ab31?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=500&auto=format&fit=crop&q=60",
+        isVeg: false
       },
       {
         id: "fs-prawns",
-        name: "Prawns Masala",
+        name: "Coastal Prawn Masala",
         price: 180,
         category: "Fish & Seafood",
-        description: "Plump, juicy prawns simmered gently in a robust, tangy, and deeply aromatic coastal tomato-onion gravy.",
+        description: "Tiger prawns simmered in a tangy tomato-onion gravy.",
         ingredients: ["Tiger Prawns", "Tomato Puree", "Caramelized Onions", "Coastal Spices", "Coriander"],
-        imageUrl: "https://images.unsplash.com/photo-1559742811-822873691fc8?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isChefSpecial: true
       }
     ]
   },
   {
     title: "Dinner",
+    icon: "",
     items: [
       {
         id: "dn-parotta",
-        name: "Parotta",
+        name: "Flaky Parotta",
         price: 15,
         category: "Dinner",
-        description: "Flaky, multi-layered flatbread crafted with artistic precision. The perfect canvas for our rich, flavorful gravies.",
-        ingredients: ["Refined Wheat Flour", "Ghee", "Salt", "Water", "Love"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        description: "Flaky flatbread pan-roasted with ghee.",
+        ingredients: ["Refined Wheat Flour", "Ghee", "Salt", "Water"],
+        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "dn-veechu",
         name: "Veechu Parotta",
         price: 25,
         category: "Dinner",
-        description: "An ultra-thin, elegantly folded variation of the classic parotta, offering a delightfully soft and delicate texture.",
+        description: "Ultra-thin, elegantly folded soft parotta.",
         ingredients: ["Refined Flour", "Oil", "Salt", "Egg Wash (Optional)"],
-        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "dn-kothu",
-        name: "Kothu Parotta",
+        name: "Egg Kothu Parotta",
         price: 70,
         category: "Dinner",
-        description: "A rhythmic street-food symphony. Shredded parotta stir-fried vigorously with spices, eggs, and rich salna on a hot griddle.",
+        description: "Shredded parotta stir-fried with eggs and spicy salna.",
         ingredients: ["Shredded Parotta", "Eggs", "Onions", "Spicy Salna", "Curry Leaves"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isPopular: true
       },
       {
         id: "dn-kalima",
-        name: "Chicken Kalima Parotta",
+        name: "Chicken Stuffed Parotta",
         price: 170,
         category: "Dinner",
-        description: "A spectacular stuffed creation. Parotta enveloping a lavish, spicy chicken filling, cooked to a crisp golden brown.",
+        description: "Crispy parotta stuffed with spiced minced chicken.",
         ingredients: ["Parotta Dough", "Minced Chicken Spiced Filling", "Onions", "Coriander", "Ghee"],
-        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isChefSpecial: true
       },
       {
         id: "dn-oil",
-        name: "Oil Parotta",
+        name: "Fried Oil Parotta",
         price: 25,
         category: "Dinner",
-        description: "A deeply indulgent parotta, shallow-fried to achieve a satisfyingly crispy exterior and a pillowy soft core.",
+        description: "Shallow-fried parotta with a soft core.",
         ingredients: ["Flour", "Generous Oil", "Salt", "Water"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "dn-panchu",
-        name: "Panchu Parotta",
+        name: "Soft Panchu Parotta",
         price: 25,
         category: "Dinner",
-        description: "Incredibly soft, cloud-like parottas that live up to their name. They melt effortlessly in the mouth.",
+        description: "Soft parottas made with milk and butter.",
         ingredients: ["Special Milled Flour", "Milk", "Butter", "Salt"],
-        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "dn-banana",
         name: "Banana Leaf Chicken Parotta",
         price: 170,
         category: "Dinner",
-        description: "A fragrant masterpiece. Parotta and rich chicken gravy wrapped in a banana leaf and steamed to infuse earthy aromas.",
+        description: "Parotta and chicken gravy steamed in a banana leaf.",
         ingredients: ["Parotta", "Chicken Sukka Gravy", "Banana Leaf Wrapper", "Aromatic Spices"],
-        imageUrl: "https://images.unsplash.com/photo-1589301760014-d929f39ce9b0?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isChefSpecial: true
       },
       {
         id: "dn-chapathi",
-        name: "Chapathi",
+        name: "Whole Wheat Chapathi",
         price: 40,
         category: "Dinner",
-        description: "Wholesome, soft-roasted whole wheat flatbreads. A healthy and traditional accompaniment to our rich curries.",
+        description: "Soft-roasted whole wheat flatbreads.",
         ingredients: ["Whole Wheat Flour", "Water", "Pinch of Salt", "Ghee Brushing"],
-        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "dn-dosa",
-        name: "Chicken Dosa",
+        name: "Chicken Masala Dosa",
         price: 130,
         category: "Dinner",
-        description: "A spectacular fusion. A crisp, golden rice crepe generously stuffed with a robust, spicy chicken masala.",
+        description: "Crisp rice crepe stuffed with spicy chicken mince.",
         ingredients: ["Fermented Rice Batter", "Spiced Chicken Mince", "Onions", "Ghee"],
-        imageUrl: "https://images.unsplash.com/photo-1589301760014-d929f39ce9b0?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&auto=format&fit=crop&q=60",
+        isVeg: false
       },
       {
         id: "dn-appam",
-        name: "Appam / Chicken Gravy",
+        name: "Appam with Chicken Stew",
         price: 135,
         category: "Dinner",
-        description: "Lace-edged, bowl-shaped rice pancakes served alongside a fragrant, coconut-milk infused chicken stew.",
+        description: "Lace-edged rice pancakes with coconut-milk chicken stew.",
         ingredients: ["Fermented Rice & Coconut Batter", "Chicken", "Coconut Milk", "Mild Spices"],
-        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=500&auto=format&fit=crop&q=60",
+        isVeg: false
       }
     ]
   },
   {
     title: "Chinese",
+    icon: "",
     items: [
       {
         id: "ch-veg",
         name: "Veg Manchurian",
         price: 100,
         category: "Chinese",
-        description: "Finely minced vegetable dumplings tossed in a deeply savory, umami-rich dark soy and garlic sauce.",
+        description: "Minced vegetable dumplings in dark soy and garlic sauce.",
         ingredients: ["Mixed Vegetables", "Soy Sauce", "Garlic", "Ginger", "Cornstarch"],
-        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ch-gobi",
-        name: "Chilli Gobi Manchurian",
+        name: "Crispy Gobi Manchurian",
         price: 90,
         category: "Chinese",
-        description: "Crisp cauliflower florets coated in a spicy, tangy glaze. An irresistible vegetarian classic with a satisfying crunch.",
+        description: "Crisp cauliflower florets in a tangy Manchurian glaze.",
         ingredients: ["Cauliflower", "Chilli Sauce", "Soy Sauce", "Spring Onions", "Garlic"],
-        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ch-mushroom",
         name: "Mushroom Manchurian",
         price: 120,
         category: "Chinese",
-        description: "Earthy, premium mushrooms wok-tossed in a vibrant, slightly sweet and sharply spicy Manchurian sauce.",
+        description: "Button mushrooms wok-tossed in a sweet and spicy sauce.",
         ingredients: ["Button Mushrooms", "Capsicum", "Onions", "Manchurian Sauce", "Coriander"],
-        imageUrl: "https://images.unsplash.com/photo-1625398407796-a29b207553b3?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ch-crispy",
-        name: "Crispy Veg",
+        name: "Crispy Honey Veg",
         price: 120,
         category: "Chinese",
-        description: "An addictive medley of julienned vegetables, flash-fried to absolute crispness and tossed in a sweet-chilli sauce.",
+        description: "Flash-fried julienned vegetables tossed in sweet-chilli sauce.",
         ingredients: ["Carrots", "Beans", "Cabbage", "Sweet Chilli Sauce", "Sesame Seeds"],
-        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "ch-chilli-chk",
-        name: "Chilli Chicken",
+        name: "Classic Chilli Chicken",
         price: 120,
         category: "Chinese",
-        description: "The crown jewel of Indo-Chinese cuisine. Succulent chicken cubes in a fiery, glossy sauce with crunchy bell peppers.",
+        description: "Chicken cubes in a glossy sauce with bell peppers.",
         ingredients: ["Boneless Chicken", "Green Chillies", "Bell Peppers", "Soy Sauce", "Garlic"],
-        imageUrl: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isPopular: true
       },
       {
         id: "ch-dragon",
         name: "Dragon Chicken",
         price: 150,
         category: "Chinese",
-        description: "A visually striking, intensely spicy dish featuring crispy chicken strips tossed with roasted cashews and fiery red chillies.",
+        description: "Crispy chicken strips tossed with cashews and red chillies.",
         ingredients: ["Chicken Strips", "Dry Red Chillies", "Cashew Nuts", "Spicy Red Sauce", "Spring Onions"],
-        imageUrl: "https://images.unsplash.com/photo-1625398407796-a29b207553b3?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isPopular: true,
+        tag: "Spicy"
       },
       {
         id: "ch-shawarma",
-        name: "Shawarma Roll",
+        name: "Chicken Shawarma Roll",
         price: 80,
         category: "Chinese",
-        description: "A Middle-Eastern inspired wrap packed with spit-roasted, spiced chicken, fresh greens, and a luscious garlic emulsion.",
+        description: "Spit-roasted chicken and garlic emulsion wrapped in pita.",
         ingredients: ["Roasted Chicken Cuts", "Pita Bread", "Garlic Toum", "Pickled Veggies", "Lettuce"],
-        imageUrl: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isPopular: true
       }
     ]
   },
   {
     title: "Fried Rice",
+    icon: "",
     items: [
       {
         id: "fr-veg",
-        name: "Veg Fried Rice",
+        name: "Vegetable Fried Rice",
         price: 80,
         category: "Fried Rice",
-        description: "A harmonious wok-tossed creation of fragrant long-grain rice, crisp vegetables, and a delicate touch of soy.",
+        description: "Wok-tossed long-grain rice with crisp vegetables.",
         ingredients: ["Basmati Rice", "Carrots", "Beans", "Spring Onions", "Light Soy Sauce"],
-        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "fr-chicken",
         name: "Chicken Fried Rice",
         price: 120,
         category: "Fried Rice",
-        description: "Fluffy rice intensely wok-charred with tender chicken morsels, egg ribbons, and a savory seasoning blend.",
+        description: "Fluffy rice wok-charred with chicken and egg ribbons.",
         ingredients: ["Rice", "Shredded Chicken", "Eggs", "White Pepper", "Soy Sauce"],
-        imageUrl: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isPopular: true
       },
       {
         id: "fr-panner",
-        name: "Panner Fried Rice",
+        name: "Paneer Fried Rice",
         price: 110,
         category: "Fried Rice",
-        description: "A vegetarian delight featuring soft, golden-fried cottage cheese cubes tossed with premium seasoned rice.",
+        description: "Golden-fried cottage cheese cubes with seasoned vegetable rice.",
         ingredients: ["Rice", "Paneer Cubes", "Mixed Vegetables", "Aromatic Spices", "Spring Onions"],
-        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "fr-schezwan",
         name: "Schezwan Chicken Fried Rice",
         price: 140,
         category: "Fried Rice",
-        description: "A fiery, bold preparation elevated by our house-made Schezwan sauce, delivering a complex, spicy kick.",
+        description: "Spicy rice elevated by house-made Schezwan sauce.",
         ingredients: ["Rice", "Chicken", "Schezwan Peppercorns", "Garlic", "Spicy Red Sauce"],
-        imageUrl: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        tag: "Spicy"
       },
       {
         id: "fr-taiwanese",
         name: "Taiwanese Veg Fried Rice",
         price: 110,
         category: "Fried Rice",
-        description: "An elegant, subtly flavored rice dish distinguished by its unique Taiwanese aromatics and crisp, fresh greens.",
+        description: "Subtly flavored rice with Taiwanese aromatics and bok choy.",
         ingredients: ["Premium Rice", "Bok Choy", "Mushroom", "Taiwanese Seasoning", "Sesame Oil"],
-        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        tag: "New"
       }
     ]
   },
   {
     title: "Noodles",
+    icon: "",
     items: [
       {
         id: "nd-chicken",
-        name: "Chicken Noodles",
+        name: "Chicken Hakka Noodles",
         price: 110,
         category: "Noodles",
-        description: "Slippery, perfectly cooked noodles wok-tossed with succulent chicken shreds and a julienne of fresh vegetables.",
+        description: "Wok-tossed noodles with chicken shreds and vegetables.",
         ingredients: ["Egg Noodles", "Chicken Breast", "Cabbage", "Carrots", "Soy Sauce"],
-        imageUrl: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        isPopular: true
       },
       {
         id: "nd-egg",
         name: "Egg Noodles",
         price: 90,
         category: "Noodles",
-        description: "A comforting classic. Silky noodles intertwined with perfectly scrambled eggs and a dash of white pepper.",
+        description: "Silky noodles with scrambled eggs and white pepper.",
         ingredients: ["Noodles", "Fresh Eggs", "Spring Onions", "White Pepper", "Light Soy"],
-        imageUrl: "https://images.unsplash.com/photo-1582878826629-29b7ad1cb431?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop&q=60",
+        isVeg: true
       },
       {
         id: "nd-schezwan",
         name: "Schezwan Chicken Noodles",
         price: 140,
         category: "Noodles",
-        description: "An electrifying noodle dish laced with our signature spicy, garlic-heavy Schezwan sauce and tender chicken.",
+        description: "Spicy noodles laced with garlic Schezwan sauce and chicken.",
         ingredients: ["Noodles", "Chicken", "Schezwan Sauce", "Garlic", "Bell Peppers"],
-        imageUrl: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop&q=60",
+        isVeg: false,
+        tag: "Spicy"
       },
       {
         id: "nd-taiwanese",
         name: "Taiwanese Veg Noodles",
         price: 100,
         category: "Noodles",
-        description: "A refined, aromatic stir-fry of noodles and crisp Asian greens, showcasing delicate Taiwanese flavors.",
+        description: "Aromatic stir-fry of noodles and crisp Asian greens.",
         ingredients: ["Noodles", "Asian Greens", "Mushrooms", "Sesame Oil", "Mild Soy"],
-        imageUrl: "https://images.unsplash.com/photo-1582878826629-29b7ad1cb431?w=500&auto=format&fit=crop&q=60"
+        imageUrl: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop&q=60",
+        isVeg: true,
+        tag: "New"
       }
     ]
   }

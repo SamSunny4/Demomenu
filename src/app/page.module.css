@@ -6,5 +6,112 @@
 
 .main {
   flex: 1;
-  padding-bottom: 4rem; /* space at the bottom */
+  padding-bottom: 2rem;
+}
+
+/* Search Section - directly under header */
+.searchSectionWrapper {
+  overflow: hidden;
+  background: var(--bg-color);
+  z-index: 45;
+  position: relative;
+}
+
+.searchSection {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+/* Blur effects */
+.bottomBlur {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  mask-image: linear-gradient(to top, black 20%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 20%, transparent 100%);
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Quick Filters */
+.quickFiltersContainer {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px 16px 20px;
+  background: var(--bg-color);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.quickFiltersContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.quickFilterBtn {
+  white-space: nowrap;
+  padding: 4px 0;
+  background-color: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.quickFilterBtn.activeFilter {
+  color: var(--accent-dark);
+  border-bottom: 2px solid var(--accent-dark);
+}
+
+.clearFilterBtn {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Empty state */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.emptyIcon {
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+
+.emptyTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.emptyText {
+  font-size: 0.875rem;
+  color: var(--text-muted);
 }

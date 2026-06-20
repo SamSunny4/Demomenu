@@ -1,51 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import styles from './CategoryNav.module.css';
-import { menuData } from '../data/menu';
+'use client';
 
-export default function CategoryNav() {
-  const [activeCategory, setActiveCategory] = useState<string>(menuData[0].title);
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './CategoryNav.module.css';
+import { MenuItem } from '../data/menu';
+
+interface Category {
+  title: string;
+  icon: string;
+  items: MenuItem[];
+}
+
+interface Props {
+  activeCategory: string;
+  onCategoryClick: (title: string) => void;
+  categories: Category[];
+}
+
+export default function CategoryNav({ activeCategory, onCategoryClick, categories }: Props) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showLeftFade, setShowLeftFade] = useState(false);
+  const [showRightFade, setShowRightFade] = useState(true);
+
+  const handleScrollState = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setShowLeftFade(el.scrollLeft > 8);
+    setShowRightFade(el.scrollLeft < el.scrollWidth - el.clientWidth - 8);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 150; // offset for the sticky header
-      
-      for (const category of menuData) {
-        const element = document.getElementById(category.title.replace(/\s+/g, '-').toLowerCase());
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveCategory(category.title);
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // initialize
-
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScrollState();
+    const el = scrollRef.current;
+    el?.addEventListener('scroll', handleScrollState);
+    return () => el?.removeEventListener('scroll', handleScrollState);
   }, []);
 
-  const scrollToCategory = (title: string) => {
-    const id = title.replace(/\s+/g, '-').toLowerCase();
-    const element = document.getElementById(id);
-    if (element) {
-      // Offset by roughly the header height + nav height
-      const y = element.getBoundingClientRect().top + window.scrollY - 140;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+  // Auto-scroll active button into view
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const activeBtn = container.querySelector(`[data-category="${activeCategory}"]`) as HTMLElement | null;
+    if (activeBtn) {
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = activeBtn.getBoundingClientRect();
+      const offset = btnRect.left - containerRect.left - containerRect.width / 2 + btnRect.width / 2;
+      container.scrollBy({ left: offset, behavior: 'smooth' });
     }
-  };
+  }, [activeCategory]);
 
   return (
     <nav className={styles.navContainer}>
-      <div className={styles.scrollWrapper}>
-        {menuData.map((category) => (
+      {showLeftFade && <div className={styles.fadeLeft} />}
+      {showRightFade && <div className={styles.fadeRight} />}
+      <div className={styles.scrollWrapper} ref={scrollRef}>
+        {categories.map((category) => (
           <button
             key={category.title}
+            data-category={category.title}
             className={`${styles.categoryButton} ${
               activeCategory === category.title ? styles.active : ''
             }`}
-            onClick={() => scrollToCategory(category.title)}
+            onClick={() => onCategoryClick(category.title)}
           >
             {category.title}
           </button>
