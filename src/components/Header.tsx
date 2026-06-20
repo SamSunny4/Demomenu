@@ -39,6 +39,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
 
   // Raw scroll-driven values (no spring here — spring applied once below)
   const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [0, 5]);    // px downward slide on scroll
+  const rawSearchSlide = useTransform(scrollY, [0, SCROLL_END], [0, 3]);    // px downward slide for search icon on scroll
   const rawTitleScale = useTransform(scrollY, [0, SCROLL_END], [1, 0.8]);  // title shrink (0.8 is a 20% shrink)
   const rawSubOpacity = useTransform(scrollY, [0, 40],         [1, 0]);
   const rawSubScale   = useTransform(scrollY, [0, 40],         [1, 0.85]);
@@ -50,6 +51,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
   // Single spring pass on composited transforms
   const config = { stiffness: 260, damping: 38, mass: 0.8 };
   const slideY      = useSpring(rawSlide,      config);
+  const searchSlideY = useSpring(rawSearchSlide, config);
   const titleScale  = useSpring(rawTitleScale, config);
   const subOpacity  = useSpring(rawSubOpacity, config);
   const subScale    = useSpring(rawSubScale,   config);
@@ -113,7 +115,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
                 animate={{ rotate: 0,   opacity: 1, scale: 1   }}
                 exit={{   rotate:  80,  opacity: 0, scale: 0.5 }}
                 transition={{ duration: 0.18, ease: 'easeInOut' }}
-                style={{ display: 'flex' }}
+                style={{ display: 'flex', y: searchSlideY }}
               >
                 {isSearchOpen ? <X size={17} /> : <Search size={17} />}
               </motion.span>
