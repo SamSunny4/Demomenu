@@ -2,18 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
 import styles from './HeroBanner.module.css';
 
 export default function HeroBanner() {
-  const scrollToMenu = () => {
-    const el = document.getElementById('milk-shake-&-ice-cream') || document.querySelector('main section');
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 140;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className={styles.hero}>
       <div className={styles.content}>
