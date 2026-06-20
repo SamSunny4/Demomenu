@@ -35,7 +35,7 @@
 }
 
 .title {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
   color: var(--text-primary);
   font-family: var(--font-heading); /* Switch to serif */
@@ -51,10 +51,10 @@
 .subtext {
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--accent-color);
-  margin-top: -2px;
-  margin-bottom: 2px;
+  margin-top: 2px;
+  margin-bottom: 4px;
   transition: opacity 0.3s ease, height 0.3s ease, margin 0.3s ease;
 }
 

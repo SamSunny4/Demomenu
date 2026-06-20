@@ -29,12 +29,33 @@
   left: 0;
   right: 0;
   height: 120px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  mask-image: linear-gradient(to top, black 20%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 20%, transparent 100%);
+  background: rgba(248, 244, 236, 0.05); /* Invisible tint to force compositing layer */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  mask-image: linear-gradient(to top, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 40%, transparent 100%);
   z-index: 100;
   pointer-events: none;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+.statsBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 0 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+}
+
+.dot {
+  color: var(--accent-color);
+  font-size: 0.9rem;
 }
 
 /* Quick Filters */
@@ -42,7 +63,7 @@
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  padding: 8px 16px 20px;
+  padding: 4px 16px 8px;
   background: var(--bg-color);
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;

@@ -1,6 +1,6 @@
 .navContainer {
   position: sticky;
-  top: 60px; /* Under the header */
+  top: var(--header-height); /* Under the header */
   z-index: 40;
   background: rgba(248, 244, 236, 0.95);
   backdrop-filter: blur(12px);

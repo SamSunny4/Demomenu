@@ -82,7 +82,7 @@ export default function ItemDetailsModal({ item, onClose }: Props) {
               <div className={styles.scrollArea}>
                 <div className={styles.descriptionSection}>
                   <div className={styles.quoteDecor}>&ldquo;</div>
-                  <p className={styles.description}>{item.description}</p>
+                  <p className={styles.description}>{item.longDescription || item.description}</p>
                 </div>
 
                 <div className={styles.ingredientsSection}>

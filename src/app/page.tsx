@@ -95,7 +95,6 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Header 
-        subtitle={`${menuData.length} Categories · ${totalItems} Dishes`} 
         onSearchToggle={() => setIsSearchOpen(!isSearchOpen)}
       />
       
@@ -116,6 +115,11 @@ export default function Home() {
       </AnimatePresence>
 
       <main className={styles.main}>
+        <div className={styles.statsBar}>
+          <span>{menuData.length} Categories</span>
+          <span className={styles.dot}>•</span>
+          <span>{totalItems} Dishes</span>
+        </div>
         {/* Quick Filters */}
         <div className={styles.quickFiltersContainer}>
           <button 
