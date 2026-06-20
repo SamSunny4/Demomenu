@@ -38,7 +38,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
    */
 
   // Raw scroll-driven values (no spring here — spring applied once below)
-  const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [0, -2]);    // px upward slide (lowered position)
+  const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [2, -2]);    // px upward slide (initial position lowered 2px, final at -2px)
   const rawTitleScale = useTransform(scrollY, [0, SCROLL_END], [1, 0.87]);  // title shrink (0.87 is a 13% shrink)
   const rawSubOpacity = useTransform(scrollY, [0, 40],         [1, 0]);
   const rawSubScale   = useTransform(scrollY, [0, 40],         [1, 0.85]);
