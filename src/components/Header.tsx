@@ -19,7 +19,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
     const isScrolled = latest > 50;
     if (isScrolled !== scrolled) {
       setScrolled(isScrolled);
-      document.documentElement.style.setProperty('--header-height', isScrolled ? '60px' : '72px');
+      document.documentElement.style.setProperty('--header-height', isScrolled ? '52px' : '72px');
     }
   });
 
@@ -38,8 +38,8 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
    */
 
   // Raw scroll-driven values (no spring here — spring applied once below)
-  const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [0, -6]);    // px upward slide
-  const rawTitleScale = useTransform(scrollY, [0, SCROLL_END], [1, 0.82]);  // title shrink (0.82 keeps it legible and not too small)
+  const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [0, -6]);    // px upward slide (lowered position)
+  const rawTitleScale = useTransform(scrollY, [0, SCROLL_END], [1, 0.87]);  // title shrink (0.87 is a 13% shrink)
   const rawSubOpacity = useTransform(scrollY, [0, 40],         [1, 0]);
   const rawSubScale   = useTransform(scrollY, [0, 40],         [1, 0.85]);
   const rawLineScale  = useTransform(scrollY, [0, 40],         [1, 0]);
