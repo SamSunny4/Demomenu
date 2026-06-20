@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Header from '../components/Header';
 import CategoryNav from '../components/CategoryNav';
 import SearchBar from '../components/SearchBar';
@@ -21,6 +21,7 @@ export default function Home() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<FilterType>(null);
   const [activeCategory, setActiveCategory] = useState(menuData[0].title);
+
 
   // Filter menu by search and quick filters
   const filteredMenu = useMemo(() => {
@@ -79,14 +80,13 @@ export default function Home() {
     const id = title.replace(/\s+/g, '-').toLowerCase();
     const el = document.getElementById(id);
     if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 140; // Adjusted for sticky nav height
+      const y = el.getBoundingClientRect().top + window.scrollY - 140;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   const handleFilterClick = (filter: FilterType) => {
     setActiveFilter(prev => prev === filter ? null : filter);
-    // Reset active category tracking when filter changes
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -94,10 +94,11 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <Header 
+      <Header
         onSearchToggle={() => setIsSearchOpen(!isSearchOpen)}
+        isSearchOpen={isSearchOpen}
       />
-      
+
       <AnimatePresence>
         {isSearchOpen && (
           <motion.div
@@ -114,33 +115,41 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+
       <main className={styles.main}>
         <div className={styles.statsBar}>
           <span>{menuData.length} Categories</span>
           <span className={styles.dot}>•</span>
           <span>{totalItems} Dishes</span>
         </div>
-        {/* Quick Filters */}
+
+        {/* Quick Filters — includes "All" to reset */}
         <div className={styles.quickFiltersContainer}>
-          <button 
+          <button
+            className={`${styles.quickFilterBtn} ${activeFilter === null ? styles.activeFilter : ''}`}
+            onClick={() => handleFilterClick(null)}
+          >
+            All
+          </button>
+          <button
             className={`${styles.quickFilterBtn} ${activeFilter === 'Best Sellers' ? styles.activeFilter : ''}`}
             onClick={() => handleFilterClick('Best Sellers')}
           >
             Best Sellers
           </button>
-          <button 
+          <button
             className={`${styles.quickFilterBtn} ${activeFilter === 'Recommended' ? styles.activeFilter : ''}`}
             onClick={() => handleFilterClick('Recommended')}
           >
             Recommended
           </button>
-          <button 
+          <button
             className={`${styles.quickFilterBtn} ${activeFilter === 'New' ? styles.activeFilter : ''}`}
             onClick={() => handleFilterClick('New')}
           >
             New Arrivals
           </button>
-          <button 
+          <button
             className={`${styles.quickFilterBtn} ${activeFilter === 'Seasonal' ? styles.activeFilter : ''}`}
             onClick={() => handleFilterClick('Seasonal')}
           >
@@ -172,7 +181,7 @@ export default function Home() {
               Try searching or clearing filters
             </p>
             {activeFilter && (
-              <button 
+              <button
                 className={styles.clearFilterBtn}
                 onClick={() => setActiveFilter(null)}
               >
@@ -184,7 +193,10 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      {/* Bottom Gaussian blur overlay */}
       <div className={styles.bottomBlur} />
+
       <ScrollToTop />
       <ItemDetailsModal item={selectedItem} onClose={() => setSelectedItem(null)} />
     </div>
