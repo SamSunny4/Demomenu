@@ -19,7 +19,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
     const isScrolled = latest > 50;
     if (isScrolled !== scrolled) {
       setScrolled(isScrolled);
-      document.documentElement.style.setProperty('--header-height', isScrolled ? '52px' : '72px');
+      document.documentElement.style.setProperty('--header-height', isScrolled ? '44px' : '72px');
     }
   });
 
@@ -38,8 +38,8 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
    */
 
   // Raw scroll-driven values (no spring here — spring applied once below)
-  const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [2, -2]);    // px upward slide (initial position lowered 2px, final at -2px)
-  const rawTitleScale = useTransform(scrollY, [0, SCROLL_END], [1, 0.87]);  // title shrink (0.87 is a 13% shrink)
+  const rawSlide      = useTransform(scrollY, [0, SCROLL_END], [0, 5]);    // px downward slide on scroll
+  const rawTitleScale = useTransform(scrollY, [0, SCROLL_END], [1, 0.8]);  // title shrink (0.8 is a 20% shrink)
   const rawSubOpacity = useTransform(scrollY, [0, 40],         [1, 0]);
   const rawSubScale   = useTransform(scrollY, [0, 40],         [1, 0.85]);
   const rawLineScale  = useTransform(scrollY, [0, 40],         [1, 0]);
@@ -66,7 +66,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
       className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}
       style={{ boxShadow, borderBottomColor: borderColor }}
     >
-      {/* Inner slides upward via translateY — no height reflow */}
+      {/* Inner container slides downward on scroll */}
       <motion.div
         className={styles.inner}
         style={{ y: slideY }}
@@ -76,7 +76,7 @@ export default function Header({ subtitle, onSearchToggle, isSearchOpen }: Props
           <div className={styles.titleClip}>
             <motion.h1
               className={styles.title}
-              style={{ scale: titleScale, transformOrigin: 'center top' }}
+              style={{ scale: titleScale, transformOrigin: 'center' }}
             >
               The{' '}
               <span className={styles.titleAccent}>Grand</span>

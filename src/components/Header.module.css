@@ -16,7 +16,7 @@
 }
 
 .headerScrolled {
-  height: 52px;
+  height: 44px;
 }
 
 .inner {
@@ -44,14 +44,14 @@
   align-items: center;
   justify-content: center;
   /* Give the title a stable space so scale doesn't reflow siblings */
-  height: 2rem;
+  height: 2.6rem;
   overflow: visible;
 }
 
 .title {
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 1.75rem;
+  font-size: 2.25rem;
   color: var(--text-primary);
   line-height: 1.1;
   /* Scale transform driven by framer-motion — no font-size changes */
