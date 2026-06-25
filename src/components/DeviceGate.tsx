@@ -82,7 +82,7 @@ export default function DeviceGate({ children }: { children: React.ReactNode }) 
         </div>
 
         <h1 className={styles.title}>
-          Whoa there, Desktop Diner! <span className={styles.titleEmoji}>🖥️</span>
+          Whoa there, Desktop Diner!
         </h1>
 
         <p className={styles.subtitle}>
@@ -91,15 +91,12 @@ export default function DeviceGate({ children }: { children: React.ReactNode }) 
 
         <div className={styles.features}>
           <div className={styles.featureItem}>
-            <span>📱</span>
             <span>Optimized for touch</span>
           </div>
           <div className={styles.featureItem}>
-            <span>⚡</span>
             <span>Blazing fast on mobile</span>
           </div>
           <div className={styles.featureItem}>
-            <span>🎨</span>
             <span>Stunning mobile themes</span>
           </div>
         </div>
@@ -113,7 +110,7 @@ export default function DeviceGate({ children }: { children: React.ReactNode }) 
         </button>
 
         <p className={styles.hint}>
-          Psst… try resizing your browser to mobile width 😉
+          Psst… try resizing your browser to mobile width
         </p>
       </div>
     </div>

@@ -304,8 +304,6 @@ interface ThemeContextValue {
   setTheme: (id: string) => void;
   autoPlay: boolean;
   toggleAutoPlay: () => void;
-  /** true while the wipe overlay is animating */
-  isTransitioning: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
@@ -314,7 +312,6 @@ const ThemeContext = createContext<ThemeContextValue>({
   setTheme: () => {},
   autoPlay: true,
   toggleAutoPlay: () => {},
-  isTransitioning: false,
 });
 
 /**
@@ -353,68 +350,28 @@ function setThemeVars(t: Theme, prefix = '') {
   }
 }
 
-const WIPE_DURATION = 600; // ms — duration of the right-to-left wipe
+
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [themeIndex, setThemeIndex] = useState(0);
   const [theme, setThemeState] = useState<Theme>(THEMES[0]);
   const [autoPlay, setAutoPlay] = useState(true);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const transitioningRef = useRef(false);
 
-  /**
-   * Perform a right-to-left wipe transition:
-   * 1. Set next-theme CSS vars on :root
-   * 2. Trigger the wipe overlay (clip-path animates right→left)
-   * 3. Once wipe covers screen, swap the real CSS vars instantly
-   * 4. Remove the overlay
-   */
-  const transitionTo = useCallback((nextTheme: Theme, nextIndex: number) => {
-    if (transitioningRef.current) return;
-    transitioningRef.current = true;
-    setIsTransitioning(true);
-
-    // Set the "next" theme colors on the overlay via data attribute
-    const overlay = document.getElementById('theme-wipe-overlay');
-    if (overlay) {
-      // Apply next theme colors directly on the overlay element
-      overlay.style.setProperty('--wipe-bg', nextTheme.colors.bgColor);
-      overlay.style.setProperty('--wipe-text', nextTheme.colors.textPrimary);
-      overlay.style.setProperty('--wipe-accent', nextTheme.colors.accentColor);
-
-      // Trigger the wipe animation
-      overlay.classList.remove('wipe-active');
-      // Force reflow
-      void overlay.offsetWidth;
-      overlay.classList.add('wipe-active');
-    }
-
-    // At ~halfway through the wipe, swap the real theme
-    setTimeout(() => {
-      setThemeState(nextTheme);
-      setThemeIndex(nextIndex);
-      setThemeVars(nextTheme);
-    }, WIPE_DURATION * 0.5);
-
-    // After wipe completes, clean up
-    setTimeout(() => {
-      if (overlay) {
-        overlay.classList.remove('wipe-active');
-      }
-      transitioningRef.current = false;
-      setIsTransitioning(false);
-    }, WIPE_DURATION);
+  const applyThemeVars = useCallback((nextTheme: Theme, nextIndex: number) => {
+    setThemeState(nextTheme);
+    setThemeIndex(nextIndex);
+    setThemeVars(nextTheme);
   }, []);
 
   // Set theme by ID (manual selection — pauses auto-play)
   const setTheme = useCallback((id: string) => {
     const idx = THEMES.findIndex(t => t.id === id);
     if (idx === -1) return;
-    transitionTo(THEMES[idx], idx);
+    applyThemeVars(THEMES[idx], idx);
     setAutoPlay(false);
     localStorage.setItem('menu-theme', id);
-  }, [transitionTo]);
+  }, [applyThemeVars]);
 
   const toggleAutoPlay = useCallback(() => {
     setAutoPlay(prev => !prev);
@@ -431,8 +388,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       intervalRef.current = setInterval(() => {
         setThemeIndex(prev => {
           const next = (prev + 1) % THEMES.length;
-          transitionTo(THEMES[next], next);
-          return prev; // actual state update happens inside transitionTo
+          applyThemeVars(THEMES[next], next);
+          return next; 
         });
       }, 5000);
     }
@@ -442,7 +399,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [autoPlay, transitionTo]);
+  }, [autoPlay, applyThemeVars]);
 
   // Restore persisted theme on mount
   useEffect(() => {
@@ -458,21 +415,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, themeIndex, setTheme, autoPlay, toggleAutoPlay, isTransitioning }}>
+    <ThemeContext.Provider value={{ theme, themeIndex, setTheme, autoPlay, toggleAutoPlay }}>
       {children}
-      {/* Wipe overlay — sits on top of everything, animates via CSS */}
-      <div
-        id="theme-wipe-overlay"
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 9998,
-          pointerEvents: 'none',
-          background: 'var(--wipe-bg, transparent)',
-          clipPath: 'inset(0 0 0 100%)',
-          transition: 'none',
-        }}
-      />
     </ThemeContext.Provider>
   );
 }

@@ -56,24 +56,33 @@ export default function Home() {
     return filtered.filter((cat) => cat.items.length > 0);
   }, [searchQuery, activeFilter]);
 
-  // Track active category on scroll
+  // Track active category on scroll via IntersectionObserver
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 180;
-      for (const category of filteredMenu) {
-        const el = document.getElementById(
-          category.title.replace(/\s+/g, '-').toLowerCase()
-        );
-        if (el) {
-          const { offsetTop, offsetHeight } = el;
-          if (scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight) {
-            setActiveCategory(category.title);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const category = filteredMenu.find(
+              (c) => c.title.replace(/\s+/g, '-').toLowerCase() === id
+            );
+            if (category) {
+              setActiveCategory(category.title);
+            }
           }
-        }
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+        });
+      },
+      { rootMargin: '-180px 0px -60% 0px' }
+    );
+
+    filteredMenu.forEach((category) => {
+      const el = document.getElementById(
+        category.title.replace(/\s+/g, '-').toLowerCase()
+      );
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, [filteredMenu]);
 
   const handleCategoryClick = (title: string) => {
