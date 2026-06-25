@@ -6,6 +6,13 @@
   width: 100%;
 }
 
+/* ── Trigger row (theme btn + auto-play btn) ── */
+.triggerRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 /* ── Trigger button ── */
 .trigger {
   display: inline-flex;
@@ -31,6 +38,54 @@
   border-color: var(--accent-color);
   color: var(--accent-color);
   background: var(--surface-hover);
+}
+
+/* ── Auto-play toggle ── */
+.autoPlayBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-color);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.autoPlayBtn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.autoPlayBtn.autoPlayActive {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: var(--surface-hover);
+}
+
+/* ── Progress ring ── */
+.progressRing {
+  position: absolute;
+  inset: -3px;
+  pointer-events: none;
+}
+
+.progressSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.progressArc {
+  transition: stroke-dasharray 0.05s linear;
 }
 
 /* ── Floating panel ── */

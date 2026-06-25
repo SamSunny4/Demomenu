@@ -1,33 +1,99 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTheme, THEMES, isDarkTheme } from './ThemeContext';
 import styles from './ThemeSwitcher.module.css';
-import { Palette, Check, ChevronUp } from 'lucide-react';
+import { Palette, Check, ChevronUp, Play, Pause } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ThemeSwitcher() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, autoPlay, toggleAutoPlay } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Animate progress bar when autoPlay is on
+  useEffect(() => {
+    if (progressRef.current) {
+      clearInterval(progressRef.current);
+      progressRef.current = null;
+    }
+
+    if (autoPlay) {
+      setProgress(0);
+      const startTime = Date.now();
+      progressRef.current = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const pct = Math.min((elapsed % 5000) / 5000, 1);
+        setProgress(pct);
+      }, 30);
+    } else {
+      setProgress(0);
+    }
+
+    return () => {
+      if (progressRef.current) clearInterval(progressRef.current);
+    };
+  }, [autoPlay, theme.id]);
 
   return (
     <div className={styles.wrapper}>
-      <button
-        className={styles.trigger}
-        onClick={() => setIsOpen(p => !p)}
-        aria-label="Change theme"
-        id="theme-switcher-trigger"
-      >
-        <Palette size={15} />
-        <span>Theme</span>
-        <motion.span
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.25, ease: 'easeInOut' }}
-          style={{ display: 'flex' }}
+      <div className={styles.triggerRow}>
+        <button
+          className={styles.trigger}
+          onClick={() => setIsOpen(p => !p)}
+          aria-label="Change theme"
+          id="theme-switcher-trigger"
         >
-          <ChevronUp size={14} />
-        </motion.span>
-      </button>
+          <Palette size={15} />
+          <span>Theme</span>
+          <motion.span
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            style={{ display: 'flex' }}
+          >
+            <ChevronUp size={14} />
+          </motion.span>
+        </button>
+
+        {/* Auto-play toggle */}
+        <button
+          className={`${styles.autoPlayBtn} ${autoPlay ? styles.autoPlayActive : ''}`}
+          onClick={toggleAutoPlay}
+          aria-label={autoPlay ? 'Pause auto-cycle' : 'Play auto-cycle'}
+          id="theme-autoplay-toggle"
+        >
+          {autoPlay ? <Pause size={13} /> : <Play size={13} />}
+          <span>{autoPlay ? 'Auto' : 'Auto'}</span>
+          {autoPlay && (
+            <div className={styles.progressRing}>
+              <svg viewBox="0 0 24 24" className={styles.progressSvg}>
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  opacity="0.15"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="none"
+                  stroke="var(--accent-color)"
+                  strokeWidth="2.5"
+                  strokeDasharray={`${progress * 62.83} 62.83`}
+                  strokeLinecap="round"
+                  transform="rotate(-90 12 12)"
+                  className={styles.progressArc}
+                />
+              </svg>
+            </div>
+          )}
+        </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (

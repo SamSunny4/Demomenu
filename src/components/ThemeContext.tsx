@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
 
 export interface Theme {
   id: string;
@@ -228,82 +228,251 @@ export const THEMES: Theme[] = [
       borderSubtle: 'rgba(255,239,235,0.05)',
     },
   },
+  // ── NEW THEMES ──
+  {
+    id: 'neon-pub',
+    name: 'Neon Pub',
+    emoji: '🍺',
+    description: 'Dark bar neon glow',
+    fonts: { heading: 'syne', body: 'inter', label: 'Syne + Inter' },
+    colors: {
+      bgColor: '#0D0D0D',
+      bgColorRgb: '13, 13, 13',
+      surfaceColor: '#1A1A1A',
+      surfaceHover: '#252525',
+      surfaceElevated: '#1E1E1E',
+      textPrimary: '#F0F0F0',
+      textSecondary: '#B8B8B8',
+      textMuted: '#707070',
+      accentColor: '#FF2D78',
+      accentLight: '#FF6BA0',
+      accentDark: '#CC1A5E',
+      borderColor: '#2A2A2A',
+      borderSubtle: 'rgba(255,45,120,0.08)',
+    },
+  },
+  {
+    id: 'arabian-nights',
+    name: 'Arabian Nights',
+    emoji: '🕌',
+    description: 'Royal Middle-Eastern',
+    fonts: { heading: 'cinzel', body: 'inter', label: 'Cinzel + Inter' },
+    colors: {
+      bgColor: '#0B1426',
+      bgColorRgb: '11, 20, 38',
+      surfaceColor: '#122040',
+      surfaceHover: '#1A2D55',
+      surfaceElevated: '#152647',
+      textPrimary: '#F5ECD7',
+      textSecondary: '#C4A96D',
+      textMuted: '#7A6B4E',
+      accentColor: '#E8A838',
+      accentLight: '#F2C96B',
+      accentDark: '#B8841C',
+      borderColor: '#1E3460',
+      borderSubtle: 'rgba(232,168,56,0.08)',
+    },
+  },
+  {
+    id: 'imperial-dynasty',
+    name: 'Imperial Dynasty',
+    emoji: '🏮',
+    description: 'Chinese palace grandeur',
+    fonts: { heading: 'playfair', body: 'inter', label: 'Playfair + Inter' },
+    colors: {
+      bgColor: '#1A0A0A',
+      bgColorRgb: '26, 10, 10',
+      surfaceColor: '#2A1212',
+      surfaceHover: '#3A1A1A',
+      surfaceElevated: '#2E1515',
+      textPrimary: '#F5E6D0',
+      textSecondary: '#C8A882',
+      textMuted: '#8C6E52',
+      accentColor: '#D4A017',
+      accentLight: '#F0C850',
+      accentDark: '#A67D0A',
+      borderColor: '#3E1E1E',
+      borderSubtle: 'rgba(212,160,23,0.08)',
+    },
+  },
 ];
 
 
 interface ThemeContextValue {
   theme: Theme;
+  themeIndex: number;
   setTheme: (id: string) => void;
+  autoPlay: boolean;
+  toggleAutoPlay: () => void;
+  /** true while the wipe overlay is animating */
+  isTransitioning: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
   theme: THEMES[0],
+  themeIndex: 0,
   setTheme: () => {},
+  autoPlay: true,
+  toggleAutoPlay: () => {},
+  isTransitioning: false,
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(THEMES[0]);
+/**
+ * Apply CSS custom properties from a Theme onto :root.
+ * Used for both the "live" variables and the "next" overlay variables.
+ */
+function setThemeVars(t: Theme, prefix = '') {
+  const root = document.documentElement;
+  const p = prefix; // e.g. '' or '--next-'
+  root.style.setProperty(`${p}--bg-color`, t.colors.bgColor);
+  root.style.setProperty(`${p}--bg-color-rgb`, t.colors.bgColorRgb);
+  root.style.setProperty(`${p}--surface-color`, t.colors.surfaceColor);
+  root.style.setProperty(`${p}--surface-hover`, t.colors.surfaceHover);
+  root.style.setProperty(`${p}--surface-elevated`, t.colors.surfaceElevated);
+  root.style.setProperty(`${p}--text-primary`, t.colors.textPrimary);
+  root.style.setProperty(`${p}--text-secondary`, t.colors.textSecondary);
+  root.style.setProperty(`${p}--text-muted`, t.colors.textMuted);
+  root.style.setProperty(`${p}--accent-color`, t.colors.accentColor);
+  root.style.setProperty(`${p}--accent-light`, t.colors.accentLight);
+  root.style.setProperty(`${p}--accent-dark`, t.colors.accentDark);
+  root.style.setProperty(`${p}--border-color`, t.colors.borderColor);
+  root.style.setProperty(`${p}--border-subtle`, t.colors.borderSubtle);
 
-  // Apply CSS variables to :root
-  const applyTheme = useCallback((t: Theme) => {
-    const root = document.documentElement;
-    root.style.setProperty('--bg-color', t.colors.bgColor);
-    root.style.setProperty('--bg-color-rgb', t.colors.bgColorRgb);
-    root.style.setProperty('--surface-color', t.colors.surfaceColor);
-    root.style.setProperty('--surface-hover', t.colors.surfaceHover);
-    root.style.setProperty('--surface-elevated', t.colors.surfaceElevated);
-    root.style.setProperty('--text-primary', t.colors.textPrimary);
-    root.style.setProperty('--text-secondary', t.colors.textSecondary);
-    root.style.setProperty('--text-muted', t.colors.textMuted);
-    root.style.setProperty('--accent-color', t.colors.accentColor);
-    root.style.setProperty('--accent-light', t.colors.accentLight);
-    root.style.setProperty('--accent-dark', t.colors.accentDark);
-    root.style.setProperty('--border-color', t.colors.borderColor);
-    root.style.setProperty('--border-subtle', t.colors.borderSubtle);
+  // Apply font heading
+  const fontMap: Record<string, string> = {
+    cormorant: 'var(--font-cormorant), var(--font-playfair), serif',
+    playfair: 'var(--font-playfair), var(--font-cormorant), serif',
+    syne: 'var(--font-syne), var(--font-inter), sans-serif',
+    cinzel: 'var(--font-cinzel), serif',
+    space: 'var(--font-space), var(--font-inter), sans-serif',
+  };
 
-    // Apply font variables
-    const fontMap: Record<string, string> = {
-      cormorant: 'var(--font-cormorant), var(--font-playfair), serif',
-      playfair: 'var(--font-playfair), var(--font-cormorant), serif',
-      syne: 'var(--font-syne), var(--font-inter), sans-serif',
-      cinzel: 'var(--font-cinzel), serif',
-      space: 'var(--font-space), var(--font-inter), sans-serif',
-    };
+  if (!prefix) {
     root.style.setProperty('--font-heading', fontMap[t.fonts.heading] || fontMap.cormorant);
+    root.style.setProperty('--header-bg', `rgba(${t.colors.bgColorRgb}, 0.95)`);
+  }
+}
 
-    // Update header background for dark themes
-    const isDark = isDarkTheme(t);
-    root.style.setProperty(
-      '--header-bg',
-      isDark
-        ? `rgba(${t.colors.bgColorRgb}, 0.95)`
-        : `rgba(${t.colors.bgColorRgb}, 0.95)`
-    );
+const WIPE_DURATION = 600; // ms — duration of the right-to-left wipe
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [themeIndex, setThemeIndex] = useState(0);
+  const [theme, setThemeState] = useState<Theme>(THEMES[0]);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const transitioningRef = useRef(false);
+
+  /**
+   * Perform a right-to-left wipe transition:
+   * 1. Set next-theme CSS vars on :root
+   * 2. Trigger the wipe overlay (clip-path animates right→left)
+   * 3. Once wipe covers screen, swap the real CSS vars instantly
+   * 4. Remove the overlay
+   */
+  const transitionTo = useCallback((nextTheme: Theme, nextIndex: number) => {
+    if (transitioningRef.current) return;
+    transitioningRef.current = true;
+    setIsTransitioning(true);
+
+    // Set the "next" theme colors on the overlay via data attribute
+    const overlay = document.getElementById('theme-wipe-overlay');
+    if (overlay) {
+      // Apply next theme colors directly on the overlay element
+      overlay.style.setProperty('--wipe-bg', nextTheme.colors.bgColor);
+      overlay.style.setProperty('--wipe-text', nextTheme.colors.textPrimary);
+      overlay.style.setProperty('--wipe-accent', nextTheme.colors.accentColor);
+
+      // Trigger the wipe animation
+      overlay.classList.remove('wipe-active');
+      // Force reflow
+      void overlay.offsetWidth;
+      overlay.classList.add('wipe-active');
+    }
+
+    // At ~halfway through the wipe, swap the real theme
+    setTimeout(() => {
+      setThemeState(nextTheme);
+      setThemeIndex(nextIndex);
+      setThemeVars(nextTheme);
+    }, WIPE_DURATION * 0.5);
+
+    // After wipe completes, clean up
+    setTimeout(() => {
+      if (overlay) {
+        overlay.classList.remove('wipe-active');
+      }
+      transitioningRef.current = false;
+      setIsTransitioning(false);
+    }, WIPE_DURATION);
   }, []);
 
+  // Set theme by ID (manual selection — pauses auto-play)
   const setTheme = useCallback((id: string) => {
-    const found = THEMES.find(t => t.id === id);
-    if (!found) return;
-    setThemeState(found);
-    applyTheme(found);
+    const idx = THEMES.findIndex(t => t.id === id);
+    if (idx === -1) return;
+    transitionTo(THEMES[idx], idx);
+    setAutoPlay(false);
     localStorage.setItem('menu-theme', id);
-  }, [applyTheme]);
+  }, [transitionTo]);
+
+  const toggleAutoPlay = useCallback(() => {
+    setAutoPlay(prev => !prev);
+  }, []);
+
+  // Auto-cycle interval
+  useEffect(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
+    if (autoPlay) {
+      intervalRef.current = setInterval(() => {
+        setThemeIndex(prev => {
+          const next = (prev + 1) % THEMES.length;
+          transitionTo(THEMES[next], next);
+          return prev; // actual state update happens inside transitionTo
+        });
+      }, 5000);
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [autoPlay, transitionTo]);
 
   // Restore persisted theme on mount
   useEffect(() => {
     const saved = localStorage.getItem('menu-theme');
-    const found = THEMES.find(t => t.id === saved);
-    if (found) {
-      setThemeState(found);
-      applyTheme(found);
+    const idx = THEMES.findIndex(t => t.id === saved);
+    if (idx !== -1) {
+      setThemeIndex(idx);
+      setThemeState(THEMES[idx]);
+      setThemeVars(THEMES[idx]);
     } else {
-      applyTheme(THEMES[0]);
+      setThemeVars(THEMES[0]);
     }
-  }, [applyTheme]);
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, themeIndex, setTheme, autoPlay, toggleAutoPlay, isTransitioning }}>
       {children}
+      {/* Wipe overlay — sits on top of everything, animates via CSS */}
+      <div
+        id="theme-wipe-overlay"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9998,
+          pointerEvents: 'none',
+          background: 'var(--wipe-bg, transparent)',
+          clipPath: 'inset(0 0 0 100%)',
+          transition: 'none',
+        }}
+      />
     </ThemeContext.Provider>
   );
 }
